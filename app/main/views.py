@@ -3,60 +3,26 @@ from . import main
 from ..requests import get_sources,get_articles
 from ..models import Sources
 
-# Views
-@app.route('/')
+#views
+@main.route('/')
 def index():
+	'''
+	view root page function that returns the index the page and its data
+	'''
+	sources = get_sources('business')
+	sports_sources = get_sources('sports')
+	technology_sources = get_sources('technology')
+	entertainment_sources = get_sources('entertainment')
+	title = "News Highlighter"
 
-    '''
-    View root page function that returns the index page and its data
-    '''
-    
-    title = 'Home - Welcome to The best Movie Review Website Online'
-    message = 'News app'
-    
-    return render_template('index.html',title = title)
+	return render_template('index.html',title = title, sources = sources,sports_sources = sports_sources,technology_sources = technology_sources,entertainment_sources = entertainment_sources)
 
-@app.route('/news/<int:news_id>')
-def movie(news_id):
+@main.route('/sources/<id>')
+def articles(id):
+	'''
+	view articles page
+	'''
+	articles = get_articles(id)
+	title = f'NH | {id}'
 
-    '''
-    View movie page function that returns the news details page and its data
-    '''
-    return render_template('news.html',id = news_id)
-
-def process_results(news_list):
-    '''
-    Function  that processes the news result and transform them to a list of Objects
-
-    Args:
-        news_list: A list of dictionaries that contain news details
-
-    Returns :
-        news_results: A list of movie objects
-    '''
-    news_results = []
-    for news_item in news_list:
-        id = news_item.get('id')
-        title = news_item.get('original_title')
-        #description= news_item.get('description')
-        image = news_item.get('image_path')
-    
-
-        if image:
-            news_object = News(id,title,image)
-            news_results.append(news_object)
-
-    return news_results
-
-@app.route('/')
-def index():
-
-    '''
-    View root page function that returns the index page and its data
-    '''
-
-    # Getting  cnn news
-    cnn_news = get_news('cnn')
-    print(cnn_news)
-    title = 'Home - Welcome to CNN news'
-    return render_template('index.html', title = title,cnn = cnn_news)
+	return render_template('articles.html',title= title,articles = articles)
