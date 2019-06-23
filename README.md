@@ -54,7 +54,7 @@ You can get the link to the live server here
 ## Licence
 
 MIT Licence
-You can get the licence from this link 
+You can get the licence from this link https://github.com/Vivvianne/News-App/pull/1/commits/89b288e012c2c8484a35f45323fdd184fbbcc4b6
 
 
 
