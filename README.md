@@ -43,7 +43,7 @@ export NEWS_API_KEY='<Your-Api-Key>'
 *Once started, the project can be accessed on your localhost using the address: http://127.0.0.1:5000/
 
 ## Live server
-You can get the link to the live server here 
+You can get the link to the live server here https://be-in-the-know.herokuapp.com/
 
 ## Technologies Used
 
